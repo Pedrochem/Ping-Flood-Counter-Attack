@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scenario name="/home/gabriel/Documents/Lab Redes/T2/topologia.xml">
+  <networks>
+    <network id="4" name="n4" type="SWITCH">
+      <position x="330" y="306" lat="47.576385190278614" lon="-122.12787533934362" alt="2.0"/>
+    </network>
+    <network id="5" name="n5" type="SWITCH">
+      <position x="625" y="305" lat="47.576394280420324" lon="-122.12390029421137" alt="2.0"/>
+    </network>
+  </networks>
+  <devices>
+    <device id="1" name="n1" type="host" class="" image="">
+      <position x="133" y="315" lat="47.57630337893225" lon="-122.13052986100818" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="2" name="n2" type="host" class="" image="">
+      <position x="245" y="160" lat="47.577712334263836" lon="-122.12902069133087" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="3" name="n3" type="host" class="" image="">
+      <position x="300" y="481" lat="47.57479439117749" lon="-122.12827958122146" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="6" name="n6" type="router" class="" image="">
+      <position x="481" y="307" lat="47.576376100135334" lon="-122.12584065522508" alt="2.0"/>
+      <services>
+        <service name="zebra"/>
+        <service name="OSPFv2"/>
+        <service name="OSPFv3"/>
+        <service name="IPForward"/>
+      </services>
+    </device>
+    <device id="7" name="n7" type="host" class="" image="">
+      <position x="637" y="142" lat="47.57787595242593" lon="-122.12373859746023" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="8" name="n8" type="host" class="" image="">
+      <position x="826" y="309" lat="47.57635791984403" lon="-122.12119187362975" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="9" name="n9" type="host" class="" image="">
+      <position x="627" y="499" lat="47.57463076338597" lon="-122.12387334475285" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+  </devices>
+  <links>
+    <link node1="4" node2="6">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:08" ip4="10.0.0.1" ip4_mask="24" ip6="2001::1" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="4" node2="1">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0a" ip4="10.0.0.10" ip4_mask="24" ip6="2001::10" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="4" node2="2">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0b" ip4="10.0.0.11" ip4_mask="24" ip6="2001::11" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="4" node2="3">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0c" ip4="10.0.0.12" ip4_mask="24" ip6="2001::12" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="5" node2="6">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:09" ip4="10.0.1.1" ip4_mask="24" ip6="2001:1::1" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="5" node2="7">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0d" ip4="10.0.1.10" ip4_mask="24" ip6="2001:1::10" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="5" node2="8">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0e" ip4="10.0.1.11" ip4_mask="24" ip6="2001:1::11" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+    <link node1="5" node2="9">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0f" ip4="10.0.1.12" ip4_mask="24" ip6="2001:1::12" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0"/>
+    </link>
+  </links>
+  <emane_global_configuration>
+    <emulator/>
+    <core>
+      <configuration name="platform_id_start" value="1"/>
+      <configuration name="nem_id_start" value="1"/>
+      <configuration name="link_enabled" value="1"/>
+      <configuration name="loss_threshold" value="30"/>
+      <configuration name="link_interval" value="1"/>
+      <configuration name="link_timeout" value="4"/>
+    </core>
+  </emane_global_configuration>
+  <session_origin lat="47.5791667" lon="-122.132322" alt="2.0" scale="150.0"/>
+  <session_options>
+    <configuration name="controlnet" value=""/>
+    <configuration name="controlnet0" value=""/>
+    <configuration name="controlnet1" value=""/>
+    <configuration name="controlnet2" value=""/>
+    <configuration name="controlnet3" value=""/>
+    <configuration name="controlnet_updown_script" value=""/>
+    <configuration name="enablerj45" value="1"/>
+    <configuration name="preservedir" value="0"/>
+    <configuration name="enablesdt" value="0"/>
+    <configuration name="sdturl" value="tcp://127.0.0.1:50000/"/>
+    <configuration name="ovs" value="0"/>
+  </session_options>
+  <session_metadata>
+    <configuration name="annotation a1" value="{iconcoords {65.0 236.0 224.0 401.0}} {type oval} {label {Vitima}} {labelcolor black} {fontfamily {Arial}} {fontsize 12} {color #7bff6b} {width 0} {border black} {canvas c1}"/>
+    <configuration name="annotation a2" value="{iconcoords {728.0 226.0 900.0 394.0}} {type oval} {label {Atacante}} {labelcolor black} {fontfamily {Arial}} {fontsize 12} {color #e6b8ff} {width 0} {border black} {canvas c1}"/>
+    <configuration name="annotation a3" value="{iconcoords {251.0 404.0 392.0 536.0}} {type rectangle} {label {Ajudante 2}} {labelcolor black} {fontfamily {Arial}} {fontsize 12} {color #c0e0ff} {width 0} {border black} {rad 25} {canvas c1}"/>
+    <configuration name="annotation a4" value="{iconcoords {192.0 92.0 332.0 234.0}} {type rectangle} {label {Ajudante 1}} {labelcolor black} {fontfamily {Arial}} {fontsize 12} {color #c0e0ff} {width 0} {border black} {rad 25} {canvas c1}"/>
+    <configuration name="annotation a5" value="{iconcoords {567 80 709 218}} {type rectangle} {label {Ajudante 3}} {labelcolor black} {fontfamily {Arial}} {fontsize 12} {color #c0e0ff} {width 0} {border black} {rad 25} {canvas c1}"/>
+    <configuration name="canvas c1" value="{name {Canvas1}}"/>
+    <configuration name="global_options" value="interface_names=yes ip_addresses=yes ipv6_addresses=no node_labels=yes link_labels=yes show_api=no background_images=no annotations=yes grid=yes traffic_start=0"/>
+  </session_metadata>
+  <default_services>
+    <node type="mdr">
+      <service name="zebra"/>
+      <service name="OSPFv3MDR"/>
+      <service name="IPForward"/>
+    </node>
+    <node type="PC">
+      <service name="DefaultRoute"/>
+    </node>
+    <node type="prouter"/>
+    <node type="router">
+      <service name="zebra"/>
+      <service name="OSPFv2"/>
+      <service name="OSPFv3"/>
+      <service name="IPForward"/>
+    </node>
+    <node type="host">
+      <service name="DefaultRoute"/>
+      <service name="SSH"/>
+    </node>
+  </default_services>
+</scenario>
