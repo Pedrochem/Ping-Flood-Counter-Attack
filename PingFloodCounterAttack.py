@@ -7,6 +7,7 @@ ETH_P_ALL = 0x0003
 
 # time in seconds
 TIME_LIMIT = 1
+
 SIZE_LIMIT = 100
 
 ICMP_PROTOCOL = 1
@@ -19,8 +20,18 @@ senders = {}
 def bytes_to_mac(bytesmac):
     return ":".join("{:02x}".format(x) for x in bytesmac)
 
-# Handles IP requests and calls "receiveIcmp" an icmp request to the host was identified
 def receiveIp(packet):
+     
+    # Description:
+    #    Handles IP requests and calls "receiveIcmp" an icmp request to the host was identified
+    
+    # Utilization:
+    #  getBinVal(packet)
+    
+    # Params:
+    #   packet
+    #    ip packet to be handled
+  
     ip_header = packet[ETH_LENGTH:20+ETH_LENGTH]
     iph = struct.unpack("!BBHHHBBH4s4s", ip_header)
     version_ihl = iph[0]
@@ -36,8 +47,22 @@ def receiveIp(packet):
         receiveIcmp(packet, iph_length,s_addr)
 
 
-# Handles ICMP requests and calls counter attack if ping flood was identified
 def receiveIcmp(packet, iph_length,s_addr):
+
+    # Description:
+    #    Handles ICMP requests and calls counter attack if ping flood was identified
+    
+    # Utilization:
+    #  receiveIcmp(packet,iph_length,s_addr)
+    
+    # Params:
+    #   packet
+    #    icmp packet to be handled
+    #   iph_lenght
+    #       ip header lenght 
+    #   s_addr 
+    #       sender ip address
+
     print("Receiving ICMP from IP: ",s_addr)
     icmp_header = packet[iph_length + ETH_LENGTH:]
     icmph = struct.unpack("!BBHHH%ds" % (len(icmp_header)-8), icmp_header)
@@ -55,14 +80,35 @@ def receiveIcmp(packet, iph_length,s_addr):
     senders[s_addr].put(now)
 
 
-# Call all known addresses (except for the attacker's) to counter attack ping flood
 def counterAttack(s_addr):
+    # Description:
+    #   Call all known addresses (except for the attacker's) to counter attack ping flood
+
+    # Utilization:
+    #  counterAttack(s_addr)
+    
+    # Params:
+    #   s_addr
+    #    attacker ip address
+    
     for addr in senders:
         if addr != s_addr:
             sendIcmp(addr,s_addr)
 
-# Sends ICMP requests
+
 def sendIcmp(addr,s_addr):
+    
+    # Description:
+    #   Sends ICMP requests with an specified source address 
+
+    # Utilization:
+    #  sendIcmp(addr,s_addr)
+    
+    # Params:
+    #   addr
+    #       destination machine ip address
+    #   s_addr
+    #       ip address which will be configured as the source address of the request
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.getprotobyname("icmp"))
     except OSError as msg:
@@ -103,6 +149,16 @@ def sendIcmp(addr,s_addr):
 
 
 def checksum(msg):
+    # Description:
+    #   Checksum for an message
+
+    # Utilization:
+    #  checksum(msg)
+    
+    # Params:
+    #   msg
+    #       message
+
     s = 0
     # add padding if not multiple of 2 (16 bits)
     msg = (msg + b'\x00') if len(msg)%2 else msg
@@ -116,6 +172,13 @@ def checksum(msg):
 
 
 def start():
+
+    # Description:
+    #   Start code execution
+
+    # Utilization:
+    #  start()
+     
     senders = dict()    
     try:
         s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(ETH_P_ALL))
